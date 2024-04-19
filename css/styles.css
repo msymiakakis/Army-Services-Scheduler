@@ -1,0 +1,260 @@
+/* CSS styles for layout and design */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+header img {
+  width: 70px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px;
+}
+
+.background-logo {
+  position: fixed; /* or absolute */
+  top: 50%; /* Position the logo vertically at 50% from the top of the viewport */
+  left: 50%; /* Position the logo horizontally at 50% from the left of the viewport */
+  transform: translate(-50%, -50%); /* Center the logo both horizontally and vertically */
+  width: 30%; /* Adjust the width of the logo as needed */
+  max-width: 80%; /* Ensure the logo doesn't exceed the viewport width */
+  height: auto; /* Maintain aspect ratio */
+  z-index: -1; /* Ensure the logo stays behind other content */
+  opacity: 0.2; /* Adjust opacity as needed */
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Distribute items along the main axis */
+  padding: 10px; /* Optional: Add padding for spacing */
+}
+
+nav {
+  margin-left: auto; /* Push nav to the right */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+}
+
+form input[type="text"],
+form select {
+  width: 20%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+form button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #555;
+}
+
+#soldiers-container,
+#services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 20px;
+}
+
+#soldier-calendars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  gap: 20px;
+}
+
+#service-calendars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+  gap: 20px;
+}
+
+.soldier-grid {
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+  /* background-color: #fff; */
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-container {
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+  /* background-color: #fff; */
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#soldiers-container div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+#services-container div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px; /* Add border radius */
+}
+
+#soldier-calendar,
+#service-calendar,
+#period-picker {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 20%;
+}
+
+#assignments {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+table {
+  /* border-collapse: collapse; */
+  width: max-content; /* Set the table width to fit its content */
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+th:first-child,
+td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: white; /* Ensure background remains white */
+  border: 1px solid black;
+}
+
+/* Add these styles to your CSS */
+
+/* Style for soldier-container */
+.soldier-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc; /* Border style */
+  padding: 10px; /* Padding for the soldier container */
+  margin: 10px; /* Margin between soldier containers */
+}
+
+/* Style for soldier-name */
+.soldier-name {
+  font-weight: bold; /* Make soldier name bold */
+  margin-bottom: 5px; /* Add margin below the soldier name */
+}
+
+/* Style for input[type="text"] */
+input[type="text"] {
+  width: 80%; /* Take up full width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Optional: Adjustments for soldier-image */
+.soldier-image {
+  width: 50px; /* Adjust image width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.highlight {
+  border: 2px solid rgb(255, 145, 0); /* Add yellow border */
+}
+
+.color-selector {
+  width: 87px;
+}
+
+.color-box {
+  margin-top: 10px;
+  width: 10px;
+}
+
+#auto-assign-btn {
+  margin-bottom: 10px;
+}
+
+#reset-history-btn {
+  margin-top: 15px;
+}
+
+.flatpickr-input {
+  display: none;
+}
+
+.flag-option {
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: 30px; /* Adjust as needed */
+}
+
+/* Adjust the height and width of the flags */
+.flag-option option[value="en"] {
+  height: 20px; /* Adjust as needed */
+  width: 30px; /* Adjust as needed */
+}
+
+.flag-option option[value="el"] {
+  height: 20px; /* Adjust as needed */
+  width: 30px; /* Adjust as needed */
+}

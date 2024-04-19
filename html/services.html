@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Υπηρεσίες</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <img src="../img/logo.png" class="background-logo" alt="Logo">
+
+    <header>
+        <img src="../img/logo.png" alt="Logo">
+        <h1>Υπηρεσίες</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Αρχική</a></li>
+                <li><a href="soldiers.html">Οπλίτες</a></li>
+                <li><a href="services.html">Υπηρεσίες</a></li>
+                <li><a href="soldier-calendar.html">Ημερολόγια Οπλιτών</a></li>
+                <li><a href="service-calendar.html">Ημερολόγια Υπηρεσιών</a></li>
+                <li><a href="assignments.html">Προγραμματισμός</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Προσθήκη Υπηρεσίας</h2>
+        <!-- Form to add a new service -->
+        <form id="add-service-form">
+            <label for="service-id">Αριθμός:</label>
+            <input type="number" id="service-id" required>
+            <label for="service-name">Όνομα:</label>
+            <input type="text" id="service-name" required>
+            <label for="service-type">Τύπος:</label>
+            <select id="service-type" required>
+                <option value="gun">Ένοπλη</option>
+                <option value="no-gun">Άοπλη</option>
+            </select>
+            <p></p>
+            <button type="submit">Προσθήκη Υπηρεσίας</button>
+        </form>
+        <h2>Υπηρεσίες</h2>
+        <div id="services-container"></div>
+    </main>
+    <script src="../js/index.js"></script>
+    <script src="../js/services.js"></script>
+</body>
+
+</html>
