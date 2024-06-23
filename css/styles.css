@@ -1,5 +1,4 @@
 /* CSS styles for layout and design */
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,22 +6,23 @@ body {
   background-color: #f0f0f0;
 }
 
-header img {
-  width: 70px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 10px;
+.background-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  max-width: 80%;
+  height: auto;
+  z-index: -1;
+  opacity: 0.2;
 }
 
-.background-logo {
-  position: fixed; /* or absolute */
-  top: 50%; /* Position the logo vertically at 50% from the top of the viewport */
-  left: 50%; /* Position the logo horizontally at 50% from the left of the viewport */
-  transform: translate(-50%, -50%); /* Center the logo both horizontally and vertically */
-  width: 30%; /* Adjust the width of the logo as needed */
-  max-width: 80%; /* Ensure the logo doesn't exceed the viewport width */
-  height: auto; /* Maintain aspect ratio */
-  z-index: -1; /* Ensure the logo stays behind other content */
-  opacity: 0.2; /* Adjust opacity as needed */
+header img {
+  width: 70px;
+  height: auto;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
 }
 
 header {
@@ -31,13 +31,17 @@ header {
   padding: 10px 0;
   text-align: center;
   display: flex;
-  align-items: center; /* Align items vertically */
-  justify-content: space-between; /* Distribute items along the main axis */
-  padding: 10px; /* Optional: Add padding for spacing */
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+header img:hover {
+  transform: scale(1.15);
 }
 
 nav {
-  margin-left: auto; /* Push nav to the right */
+  margin-left: auto;
 }
 
 nav ul {
@@ -55,6 +59,14 @@ nav ul li a {
   text-decoration: none;
 }
 
+nav a {
+  transition: transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #fde720;
+}
+
 main {
   padding: 20px;
 }
@@ -66,6 +78,27 @@ h2 {
 form label {
   display: block;
   margin-top: 10px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  flex: 1;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  flex: 2;
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
 }
 
 form input[type="text"],
@@ -108,10 +141,38 @@ form button:hover {
   gap: 20px;
 }
 
-.soldier-grid {
-  /* border: 1px solid #ccc; */
+#add-soldier-form {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+#add-soldier-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#add-soldier-form button {
+  width: 100%;
   padding: 10px;
-  /* background-color: #fff; */
+  border: none;
+  border-radius: 3px;
+  background-color: #fde720;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#add-soldier-form button:hover {
+  background-color: #fde720;
+}
+
+.soldier-grid {
+  padding: 10px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -119,10 +180,38 @@ form button:hover {
   justify-content: center;
 }
 
-.service-container {
-  /* border: 1px solid #ccc; */
+#add-service-form {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+#add-service-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#add-service-form button {
+  width: 100%;
   padding: 10px;
-  /* background-color: #fff; */
+  border: none;
+  border-radius: 3px;
+  background-color: #fde720;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#add-service-form button:hover {
+  background-color: #fde720;
+}
+
+.service-container {
+  padding: 10px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -141,7 +230,7 @@ form button:hover {
   border: 1px solid #ccc;
   padding: 10px;
   background-color: #fff;
-  border-radius: 5px; /* Add border radius */
+  border-radius: 5px;
 }
 
 #soldier-calendar,
@@ -163,62 +252,68 @@ form button:hover {
 
 .table-container {
   width: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-x: auto;
 }
 
 table {
-  /* border-collapse: collapse; */
-  width: max-content; /* Set the table width to fit its content */
+  width: max-content;
 }
 
 th,
 td {
-  border: 1px solid black;
+  border: 1px solid rgb(0, 0, 0);
   padding: 8px;
   text-align: center;
+  border-radius: 3px;
 }
 
 th:first-child,
 td:first-child {
   position: sticky;
   left: 0;
-  background-color: white; /* Ensure background remains white */
+  background-color: white;
   border: 1px solid black;
 }
 
-/* Add these styles to your CSS */
+th {
+  background-color: white;
+}
 
-/* Style for soldier-container */
 .soldier-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc; /* Border style */
-  padding: 10px; /* Padding for the soldier container */
-  margin: 10px; /* Margin between soldier containers */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
 }
 
-/* Style for soldier-name */
+.soldier-div {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-div {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
 .soldier-name {
-  font-weight: bold; /* Make soldier name bold */
-  margin-bottom: 5px; /* Add margin below the soldier name */
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-/* Style for input[type="text"] */
 input[type="text"] {
-  width: 80%; /* Take up full width */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  width: 80%;
+  box-sizing: border-box;
 }
 
-/* Optional: Adjustments for soldier-image */
 .soldier-image {
-  width: 50px; /* Adjust image width */
-  height: auto; /* Maintain aspect ratio */
+  width: 50px;
+  height: auto;
 }
 
 .highlight {
-  border: 2px solid rgb(255, 145, 0); /* Add yellow border */
+  border: 2px solid rgb(255, 145, 0);
 }
 
 .color-selector {
@@ -245,16 +340,94 @@ input[type="text"] {
 .flag-option {
   background-repeat: no-repeat;
   background-position: center left;
-  padding-left: 30px; /* Adjust as needed */
+  padding-left: 30px;
 }
 
-/* Adjust the height and width of the flags */
 .flag-option option[value="en"] {
-  height: 20px; /* Adjust as needed */
-  width: 30px; /* Adjust as needed */
+  height: 20px;
+  width: 30px;
 }
 
 .flag-option option[value="el"] {
-  height: 20px; /* Adjust as needed */
-  width: 30px; /* Adjust as needed */
+  height: 20px;
+  width: 30px;
+}
+
+#flatpickr-day.start-date span {
+  background-color: #fde720;
+  color: black;
+}
+
+#flatpickr-day.end-date span {
+  background-color: #fde720;
+  color: black;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popup.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.popup-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.popup.show .popup-content {
+  opacity: 1;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+button {
+  background-color: #fde720;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #fde720;
+}
+
+.history-section-container {
+  display: none;
+}
+
+#auto-assign-btn {
+  display: none;
+}
+
+#schedule-table {
+  display: none;
 }

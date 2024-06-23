@@ -67,14 +67,14 @@ function displaySoldiers(soldiers) {
   if (soldiers && soldiers.length > 0) {
     soldiers.forEach(soldier => {
       const soldierType = soldier.type;
-      console.log(soldierType);
       const soldierDiv = document.createElement("div");
+      soldierDiv.classList.add("soldier-div");
       // Create an image element for the soldier
       const soldierImage = document.createElement("img");
       if (soldierType == "gun") {
-        soldierImage.src = "./img/soldier.png"; // Set the image source
+        soldierImage.src = "../img/soldier.png"; // Set the image source
       } else if (soldierType == "no-gun") {
-        soldierImage.src = "./img/medical.png"; // Set the image source
+        soldierImage.src = "../img/medical.png"; // Set the image source
       }
       soldierImage.classList.add("soldier-image"); // Add a class for styling
 
@@ -90,7 +90,7 @@ function displaySoldiers(soldiers) {
       soldierDiv.appendChild(soldierNameParagraph);
 
       const soldierTypeParagraph = document.createElement("p");
-      soldierTypeParagraph.textContent = `Τύπος: ${soldier.type}`;
+      soldierTypeParagraph.textContent = `Τύπος: ${soldier.type == "gun" ? "Ένοπλος" : "Άοπλος"}`;
       soldierDiv.appendChild(soldierTypeParagraph);
 
       // Create a button element for removing the soldier
@@ -105,7 +105,7 @@ function displaySoldiers(soldiers) {
       soldiersContainer.appendChild(soldierDiv);
     });
   } else {
-    soldiersContainer.innerHTML = "<p>Δεν υπάρχουν διαθέσιμοι οπλίτες.</p>";
+    soldiersContainer.innerHTML = "<p>Δεν υπάρχουν καταχωρημένοι οπλίτες.</p>";
   }
 }
 

@@ -12,7 +12,9 @@
     <img src="../img/logo.png" class="background-logo" alt="Logo">
 
     <header>
-        <img src="../img/logo.png" alt="Logo">
+        <a href="../index.html">
+            <img src="../img/logo.png" alt="Logo">
+        </a>
         <h1>Οπλίτες</h1>
         <nav>
             <ul>
@@ -26,20 +28,24 @@
         </nav>
     </header>
     <main>
-        <h2>Προσθήκη Οπλίτη</h2>
-        <!-- Form to add a new soldier -->
+        <h2>Καταχώρηση Οπλίτη</h2>
         <form id="add-soldier-form">
-            <label for="soldier-id">ΑΣΜ:</label>
-            <input type="number" id="soldier-id" required>
-            <label for="soldier-name">Ον/μο:</label>
-            <input type="text" id="soldier-name" required>
-            <label for="soldier-type">Τύπος:</label>
-            <select id="soldier-type" required>
-                <option value="gun">Ένοπλος</option>
-                <option value="no-gun">Άοπλος</option>
-            </select>
-            <p></p>
-            <button type="submit">Προσθήκη Οπλίτη</button>
+            <div class="form-group">
+                <label for="soldier-id">ΑΣΜ:</label>
+                <input type="number" id="soldier-id" required>
+            </div>
+            <div class="form-group">
+                <label for="soldier-name">Ον/μο:</label>
+                <input type="text" id="soldier-name" required>
+            </div>
+            <div class="form-group">
+                <label for="soldier-type">Τύπος:</label>
+                <select id="soldier-type" required>
+                    <option value="gun">Ένοπλος</option>
+                    <option value="no-gun">Άοπλος</option>
+                </select>
+            </div>
+            <button type="submit">Καταχώρηση Οπλίτη</button>
         </form>
         <h2>Οπλίτες</h2>
         <div id="soldiers-container"></div>

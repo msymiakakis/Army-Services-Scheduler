@@ -72,10 +72,11 @@ function displayServices(services) {
   if (services && services.length > 0) {
     services.forEach(service => {
       const serviceDiv = document.createElement("div");
-      serviceDiv.innerHTML = `<p style="margin-top: 0;">ID: ${service.id}</p>
-            <p>Name: ${service.name}</p>
-            <p>Type: ${service.type}</p>
-            <label for="color-select-${service.id}">Color:</label>
+      serviceDiv.classList.add("service-div");
+      serviceDiv.innerHTML = `<p style="margin-top: 0;">Αναγνωριστικός Αριθμός (ID): ${service.id}</p>
+            <p>Υπηρεσία: ${service.name}</p>
+            <p>Είδος: ${service.type == "gun" ? "Ένοπλη" : "Άοπλη"}</p>
+            <label for="color-select-${service.id}"> Χρώμα:</label>
             <div class="color-selector">
                 <select id="color-select-${service.id}" onchange="changeServiceColor(${service.id}, this.value)">
                     ${colors.map(color => `<option value="${color}" ${color === service.color ? "selected" : ""}>${color}</option>`).join("")}
@@ -83,12 +84,12 @@ function displayServices(services) {
                 <div class="color-box" style="background-color: ${service.color};"></div> <!-- Display the selected color -->
             </div>
             <p></p>
-            <button onclick="removeService(${service.id})">Remove</button>`;
+            <button onclick="removeService(${service.id})">Αφαίρεση</button>`;
 
       servicesContainer.appendChild(serviceDiv);
     });
   } else {
-    servicesContainer.innerHTML = "<p>No services available.</p>";
+    servicesContainer.innerHTML = "<p>Δεν υπάρχουν καταχωρημένες υπηρεσίες.</p>";
   }
 }
 

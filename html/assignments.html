@@ -14,7 +14,9 @@
     <img src="../img/logo.png" class="background-logo" alt="Logo">
 
     <header>
-        <img src="../img/logo.png" alt="Logo">
+        <a href="../index.html">
+            <img src="../img/logo.png" alt="Logo">
+        </a>
         <h1>Προγραμματισμός</h1>
         <nav>
             <ul>
@@ -34,25 +36,29 @@
                 <thead>
                     <tr>
                         <th>Οπλίτης</th>
-                        <!-- Add day headers dynamically using JavaScript -->
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Table body will be filled dynamically using JavaScript -->
                 </tbody>
             </table>
         </div>
-        <div class="history-section-container">
-            <h2>Ιστορικό Υπηρεσιών Οπλιτών</h2>
-            <div id="soldier-calendars"></div>
-            <h2>Περίοδος ιστορικού προς διαγραφή: <span id="history-start-date"></span> - <span
-                    id="history-end-date"></span></h2>
-            <div id="history-period-picker"></div>
-            <button id="reset-history-btn">Διαγραφή Ιστορικού</button>
+        <div class="history-container">
+            <div class="history-section-container">
+                <h2>Ιστορικό Υπηρεσιών Οπλιτών</h2>
+                <div id="soldier-calendars"></div>
+                <h2>Περίοδος ιστορικού προς διαγραφή: <span id="history-start-date"></span> - <span
+                        id="history-end-date"></span></h2>
+                <div id="history-period-picker"></div>
+                <button id="reset-history-btn">Διαγραφή Ιστορικού</button>
+            </div>
+            <div id="noSoldiersServicesMessage" style="display: none;">Δεν υπάρχουν καταχωρημένοι οπλίτες ή/και
+                υπηρεσίες.</div>
         </div>
+
     </main>
     <script src="../js/index.js"></script>
     <script src="../js/assignments.js"></script>
+    <script src="../js/translateDates.js"></script>
     <script src="../js/scheduleTable.js"></script>
     <script src="../js/service-history.js"></script>
 </body>
