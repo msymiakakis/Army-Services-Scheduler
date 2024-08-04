@@ -125,13 +125,13 @@ form button:hover {
 #soldiers-container,
 #services-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
   gap: 20px;
 }
 
 #soldier-calendars {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
   gap: 20px;
 }
 
@@ -142,10 +142,12 @@ form button:hover {
 }
 
 #add-soldier-form {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   padding: 20px;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
+  /* border: 1px solid #cccccc; */
   border-radius: 5px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }
@@ -158,17 +160,19 @@ form button:hover {
 
 #add-soldier-form button {
   width: 100%;
+  align-self: center;
   padding: 10px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 3px;
   background-color: #fde720;
   color: #000000;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 #add-soldier-form button:hover {
-  background-color: #fde720;
+  background-color: #f5d91e;
 }
 
 .soldier-grid {
@@ -181,10 +185,11 @@ form button:hover {
 }
 
 #add-service-form {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   padding: 20px;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
   border-radius: 5px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }
@@ -197,17 +202,19 @@ form button:hover {
 
 #add-service-form button {
   width: 100%;
+  align-self: center;
   padding: 10px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 3px;
   background-color: #fde720;
   color: #000000;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 #add-service-form button:hover {
-  background-color: #fde720;
+  background-color: #f5d91e;
 }
 
 .service-container {
@@ -220,17 +227,45 @@ form button:hover {
 }
 
 #soldiers-container div {
-  border: 1px solid #ccc;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
   background-color: #fff;
   border-radius: 5px;
 }
 
-#services-container div {
-  border: 1px solid #ccc;
-  padding: 10px;
+#soldiers-container .soldier-image {
+  margin: 0 auto; /* Center the image horizontally */
+  margin-bottom: 5px;
+}
+
+#soldiers-container p {
+  margin: 0; /* Remove default margin */
+  margin-bottom: 10px;
+}
+
+#soldiers-container button {
+  margin: 0; /* Remove default margin */
+  margin-top: 20px;
+}
+
+#services-container .service-div {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   background-color: #fff;
   border-radius: 5px;
+}
+
+#services-container p {
+  margin: 0; /* Remove default margin */
+  margin-bottom: 10px;
+}
+
+#services-container button {
+  margin: 0; /* Remove default margin */
+  margin-top: 20px;
 }
 
 #soldier-calendar,
@@ -284,7 +319,7 @@ th {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding: 10px;
   margin: 10px;
 }
@@ -317,15 +352,32 @@ input[type="text"] {
 }
 
 .color-selector {
-  width: 87px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.color-selector select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
 }
 
 .color-box {
-  margin-top: 10px;
-  width: 10px;
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 #auto-assign-btn {
+  margin-bottom: 10px;
+}
+
+#auto-assign-btn-2 {
   margin-bottom: 10px;
 }
 
@@ -411,23 +463,51 @@ button {
   background-color: #fde720;
   color: black;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid #d8d8d8;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.2s; /* Optional: Smooth transition */
+}
+
+.serviceButton {
+  width: 70%;
+  align-self: center;
+}
+
+.soldierButton {
+  width: 70%;
+  align-self: center;
 }
 
 button:hover {
-  background-color: #fde720;
+  background-color: #f5d91e;
 }
 
 .history-section-container {
   display: none;
 }
 
-#auto-assign-btn {
+#schedule-table {
   display: none;
 }
 
-#schedule-table {
-  display: none;
+.hoverable {
+  --bg-color: transparent; /* Default background color */
+  background-color: var(--bg-color);
+  transition: background-color 0.2s; /* Optional: Smooth transition */
+}
+
+.hoverable:hover {
+  --bg-color: yellow; /* Change this to your desired hover color */
+}
+
+.selectAllButton {
+  margin: 20px;
+}
+
+.image-divider {
+  width: 100%; /* Make the line span the full width of the container */
+  border: none; /* Remove default border */
+  border-top: 1px solid #bdbdbd; /* Add a solid black line */
+  margin-bottom: 20px;
 }

@@ -1,4 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
+  function updateButtonState(status) {
+    if (status === "1") {
+      autoAssignBtn.textContent = "Αυτόματη Ανάθεση ✔️";
+    } else {
+      autoAssignBtn.textContent = "Αυτόματη Ανάθεση ❌";
+    }
+  }
+
+  const autoAssignBtn = document.getElementById("auto-assign-btn-2");
+
+  let autoAssignStatus = localStorage.getItem("autoAssign");
+  if (autoAssignStatus === null) {
+    autoAssignStatus = "1";
+    localStorage.setItem("autoAssign", autoAssignStatus);
+  }
+
+  updateButtonState(autoAssignStatus);
+
+  autoAssignBtn.addEventListener("click", function () {
+    if (autoAssignStatus === "1") {
+      autoAssignStatus = "0";
+      localStorage.setItem("autoAssign", autoAssignStatus);
+    } else {
+      autoAssignStatus = "1";
+      localStorage.setItem("autoAssign", autoAssignStatus);
+    }
+    updateButtonState(autoAssignStatus);
+  });
   // Get today's date
   const now = new Date();
 

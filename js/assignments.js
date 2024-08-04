@@ -37,9 +37,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (autoAssignStatus == 1) {
-    soldiers.forEach(soldier => {
-      soldier.serviceHistory = new Array(totalDaysInYear).fill(0);
-    });
+    const calculateDaysDifference = (date1, date2) => {
+      return Math.floor((date2 - date1) / (1000 * 60 * 60 * 24));
+    };
+
+    if (schedulingPeriod) {
+      // Calculate the start and end indices based on the scheduling period
+      const startIndex = calculateDaysDifference(startDate, schedulingDates[0]);
+      const endIndex = calculateDaysDifference(startDate, schedulingDates[1]);
+
+      // Set the selected dates period to 1 (or another specific value)
+      for (let i = startIndex; i <= endIndex; i++) {
+        console.log(startIndex, endIndex, i);
+        soldiers.forEach(soldier => {
+          soldier.serviceHistory[i + 1] = 0;
+        });
+      }
+    }
 
     localStorage.setItem("soldiers", JSON.stringify(soldiers));
 
@@ -145,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Replace the soldier at the found index with the updated soldier
             soldiers[indexToUpdate] = soldierToUpdate;
           } else {
-            console.error("Soldier not found with ID:", soldier.id);
+            console.error("Δεν βρέθηκαν οπλίτες με ΑΣΜ:", soldier.id);
           }
         });
       }
@@ -154,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (allSoldiers.length < noGunServices.length) {
         // Alert if there are more services than available soldiers
-        alert(`Not enough soldiers available for day ${day}.`);
+        alert(`Την ημέρα ${day} υπάρχουν λιγότεροι οπλίτες από υπηρεσίες.`);
         continue; // Skip to the next day
       }
 
@@ -265,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Replace the soldier at the found index with the updated soldier
             soldiers[indexToUpdate] = soldierToUpdate;
           } else {
-            console.error("Soldier not found with ID:", soldier.id);
+            console.error("Δεν βρέθηκαν οπλίτες με ΑΣΜ:", soldier.id);
           }
         });
       }
@@ -308,9 +322,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateButtonState(status) {
     if (status === "1") {
-      autoAssignBtn.textContent = "Αυτόματη Ανάθεση ✔️";
+      autoAssignBtn.textContent = "Αυτόματη Ανάθεση  ✔️";
     } else {
-      autoAssignBtn.textContent = "Αυτόματη Ανάθεση ❌";
+      autoAssignBtn.textContent = "Αυτόματη Ανάθεση  ❌";
     }
   }
 });

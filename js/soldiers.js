@@ -51,7 +51,7 @@ function removeSoldier(soldierId) {
     // Update the display of soldiers in the UI
     displaySoldiers(soldiers);
   } else {
-    console.log("Soldier with ID", soldierId, "not found.");
+    console.log("Ο οπλίτης με ΑΣΜ", soldierId, "δεν βρέθηκε.");
   }
 }
 
@@ -59,7 +59,7 @@ function removeSoldier(soldierId) {
 function displaySoldiers(soldiers) {
   const soldiersContainer = document.getElementById("soldiers-container");
   if (!soldiersContainer) {
-    console.error("Error: soldiers-container element not found.");
+    console.error("Σφάλμα: το στοιχείο soldiers-container δεν βρέθηκε.");
     return;
   }
 
@@ -80,22 +80,28 @@ function displaySoldiers(soldiers) {
 
       soldierDiv.appendChild(soldierImage); // Append the image to the soldier div
 
+      const line = document.createElement("hr");
+      line.classList.add("image-divider"); // Add a class for styling
+
+      // Append the <hr> element to the soldierDiv
+      soldierDiv.appendChild(line);
       // Create paragraph elements for soldier information
       const soldierIdParagraph = document.createElement("p");
-      soldierIdParagraph.textContent = `ΑΣΜ: ${soldier.id}`;
+      soldierIdParagraph.innerHTML = `<strong>ΑΣΜ:</strong> ${soldier.id}`;
       soldierDiv.appendChild(soldierIdParagraph);
 
       const soldierNameParagraph = document.createElement("p");
-      soldierNameParagraph.textContent = `Ον/μο: ${soldier.name}`;
+      soldierNameParagraph.innerHTML = `<strong>Ον/μο:</strong> ${soldier.name}`;
       soldierDiv.appendChild(soldierNameParagraph);
 
       const soldierTypeParagraph = document.createElement("p");
-      soldierTypeParagraph.textContent = `Τύπος: ${soldier.type == "gun" ? "Ένοπλος" : "Άοπλος"}`;
+      soldierTypeParagraph.innerHTML = `<strong>Τύπος:</strong> ${soldier.type == "gun" ? "Ένοπλος" : "Άοπλος"}`;
       soldierDiv.appendChild(soldierTypeParagraph);
 
       // Create a button element for removing the soldier
       const removeButton = document.createElement("button");
       removeButton.textContent = "Αφαίρεση";
+      removeButton.classList.add("soldierButton");
       removeButton.addEventListener("click", function () {
         removeSoldier(soldier.id);
       });
@@ -150,7 +156,7 @@ function addSoldierEventListeners() {
     console.log("Clicked on soldiers container:", event.target);
     if (event.target && event.target.matches("button.remove-soldier")) {
       const soldierId = event.target.dataset.id;
-      console.log("Removing soldier with ID:", soldierId);
+      console.log("Αφαιρέθηκε ο οπλίτης με ΑΣΜ:", soldierId);
       removeSoldier(soldierId);
     }
   });

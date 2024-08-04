@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const endDate = new Date(schedulingPeriod.endDate);
   const numberOfDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1; // Calculate number of days
 
-  console.log(!services, soldiers, schedulingPeriod);
   if (
     !services ||
     !soldiers ||
@@ -45,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     soldiers.forEach((soldier, soldierIndex) => {
       const tr = document.createElement("tr");
       const soldierNameCell = document.createElement("td");
-      soldierNameCell.textContent = soldier.name;
+      soldierNameCell.textContent = `${soldier.name} (${soldier.type == "gun" ? "Ένοπλος" : "Άοπλος"})`;
+      soldierNameCell.style.textAlign = "left";
       tr.appendChild(soldierNameCell);
       for (let i = 0; i < numberOfDays; i++) {
         const dayOfYear = getDayOfYear(startDate) + i;
@@ -55,10 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
         td.dataset.dayOfYear = dayOfYear;
         if (serviceId) {
           const service = services.find(service => service.id === serviceId);
-          td.textContent = service ? service.name : "ΕΞΟΔΟΣ";
-          td.style.backgroundColor = service ? service.color : "transparent";
+          td.textContent = service.name;
+          td.style.backgroundColor = service.color;
+          td.style.cursor = "pointer"; // Change cursor to pointer on hover
+          td.classList.add("hoverable"); // Add hoverable class
         } else {
           td.textContent = "ΕΞΟΔΟΣ";
+          td.style.cursor = "pointer"; // Change cursor to pointer on hover
+          td.classList.add("hoverable"); // Add hoverable class
         }
         tr.appendChild(td);
       }
@@ -77,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dayOfYear = clickedCell.dataset.dayOfYear;
     // Open modal or form for user input (selecting another soldier's service)
     // For demonstration purposes, we'll just use a prompt to simulate user input
-    const newServiceName = prompt("Enter the name of the new service:");
+    const newServiceName = prompt("Εισάγετε το όνομα της υπηρεσίας:");
     if (newServiceName !== null) {
       const availableServices = services.filter(service => {
         // Check if the service has availability for the specified dayOfYear
@@ -87,11 +91,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const clickedSoldier = soldiers[soldierIndex];
 
       if (clickedSoldier.availability[dayOfYear] === 0) {
-        alert("Selected soldier is not available for this day.");
+        alert("Ο επιλεγμένος οπλίτης δεν είναι διαθέσιμος για αυτή την ημέρα.");
       } else if (!newService) {
-        alert("There is no such service or it is not available at that day.");
+        alert("Δεν υπάρχει τέτοια υπηρεσία ή δεν είναι διαθέσιμη εκείνη την ημέρα.");
       } else if (clickedSoldier.type === "no-gun" && clickedSoldier.type != newService.type) {
-        alert("Selected service is not applicable to the selected soldier.");
+        alert("Η επιλεγμένη υπηρεσία δεν μπορεί να εκτελεστεί από τον επιλεγμένο οπλίτη.");
       } else if (newService) {
         // Find the cell of that day that has the name of newService and change values between the cells and update the soldiers serviceHistory arrays accordingly.
         const substituteIndex = Array.from(document.querySelectorAll(`#schedule-table tbody td[data-day-of-year="${dayOfYear}"]:not(:empty)`)).findIndex(
@@ -147,8 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           localStorage.setItem("soldiers", JSON.stringify(soldiers));
         } else if (substituteIndex === -1) {
-          console.log(2);
-
           clickedCell.classList.add("highlight");
           clickedCell.textContent = newService.name;
           clickedCell.style.backgroundColor = newService.color;
@@ -157,10 +159,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
           localStorage.setItem("soldiers", JSON.stringify(soldiers));
         } else if (soldiers[substituteIndex].type === "no-gun" && soldiers[substituteIndex].type != substituteService.type) {
-          alert("Current service is not applicable to the substitute soldier.");
+          alert("Η τρέχουσα υπηρεσία δεν μπορεί να εκτελεστεί από τον αντικαταστάτη οπλίτη.");
         } else {
-          console.log(3);
-
           // Highlight both the clicked cell and the corresponding cell
           clickedCell.classList.add("highlight");
           substituteCell.classList.add("highlight");

@@ -1,4 +1,4 @@
-const colors = ["#FFCCCC", "#CCFFCC", "#CCCCFF", "#FFCCFF", "#FFFFCC", "#CCFFFF", "#FF9999", "#99FF99", "#9999FF", "#FFFF99"];
+const colors = ["#EF9C66", "#FCDC94", "#F4CE14", "#78ABA8", "#EF5A6F", "#36BA98", "#C65BCF", "#536493", "#9999FF", "#FFFF99"];
 
 // Function to save services data to local storage
 function saveServices(services) {
@@ -24,7 +24,7 @@ function addService(newService) {
   // Check if the ID already exists
   const idExists = services.some(service => service.id === newService.id);
   if (idExists) {
-    alert("Error: Service with the same ID already exists.");
+    alert("Σφάλμα: Υπάρχει υπηρεσία με αυτόν τον αναγνωριστικό αριθμό (ID). Δοκιμάστε ξανά.");
     return;
   }
 
@@ -73,18 +73,17 @@ function displayServices(services) {
     services.forEach(service => {
       const serviceDiv = document.createElement("div");
       serviceDiv.classList.add("service-div");
-      serviceDiv.innerHTML = `<p style="margin-top: 0;">Αναγνωριστικός Αριθμός (ID): ${service.id}</p>
-            <p>Υπηρεσία: ${service.name}</p>
-            <p>Είδος: ${service.type == "gun" ? "Ένοπλη" : "Άοπλη"}</p>
-            <label for="color-select-${service.id}"> Χρώμα:</label>
+      serviceDiv.innerHTML = `<p style="margin-top: 0;"><strong>Αναγνωριστικός Αριθμός (ID):</strong> ${service.id}</p>
+            <p><strong>Υπηρεσία:</strong> ${service.name}</p>
+            <p><strong>Είδος:</strong> ${service.type == "gun" ? "Ένοπλη" : "Άοπλη"}</p>
+            <label for="color-select-${service.id}"> <strong>Χρώμα:</strong></label>
             <div class="color-selector">
                 <select id="color-select-${service.id}" onchange="changeServiceColor(${service.id}, this.value)">
                     ${colors.map(color => `<option value="${color}" ${color === service.color ? "selected" : ""}>${color}</option>`).join("")}
                 </select>
                 <div class="color-box" style="background-color: ${service.color};"></div> <!-- Display the selected color -->
             </div>
-            <p></p>
-            <button onclick="removeService(${service.id})">Αφαίρεση</button>`;
+            <button class="serviceButton" onclick="removeService(${service.id})">Αφαίρεση</button>`;
 
       servicesContainer.appendChild(serviceDiv);
     });
@@ -100,7 +99,7 @@ function changeServiceColor(serviceId, color) {
   // Check if the selected color is already assigned to another service
   const colorAlreadyExists = services.some(service => service.color === color && service.id !== serviceId);
   if (colorAlreadyExists) {
-    alert("Color is already assigned to another service.");
+    alert("Το χρώμα που επιλέξατε αντιστοιχεί σε άλλη υπηρεσία. Δοκιμάστε ξανά.");
     return; // Stop further execution
   }
 
@@ -111,7 +110,7 @@ function changeServiceColor(serviceId, color) {
     saveServices(services);
     displayServices(services);
   } else {
-    console.error("Service not found with ID:", serviceId);
+    console.error("Δεν βρέθηκε υπηρεσία με αναγνωριστικό αριθμό (ID):", serviceId);
   }
 }
 

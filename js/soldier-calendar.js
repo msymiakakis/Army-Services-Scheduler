@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // Save the updated soldiers array back to local storage
       localStorage.setItem("soldiers", JSON.stringify(soldiers));
 
-      console.log("Soldier availability updated:", soldier);
+      console.log("Η διαθεσιμότητα του οπλίτη ενημερώθηκε επιτυχώς:", soldier);
     } else {
-      console.error("Soldier not found with ID:", soldierId);
+      console.error("Δεν βρέθηκε οπλίτης με ΑΣΜ:", soldierId);
     }
   }
 
@@ -83,6 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // calendarContainer.setAttribute('type', 'text'); // Set input type to text
     soldierDiv.appendChild(calendarContainer); // Append the calendar input to the info div
 
+    // Append a button that selects all available dates.
+    const selectAllButton = document.createElement("button");
+    selectAllButton.className = "selectAllButton";
+    selectAllButton.textContent = "Επιλογή Όλων";
+    soldierDiv.appendChild(selectAllButton);
     // Append the info div to the soldier div
     // soldierDiv.appendChild(infoDiv);
 
@@ -127,6 +132,29 @@ document.addEventListener("DOMContentLoaded", function () {
         updateSoldierAvailability(soldierId, availabilityArrayTemp);
       },
     });
+
+    // Handle the select all button click
+    selectAllButton.onclick = () => {
+      if (schedulingDates.length === 2) {
+        const allDates = [];
+        let currentDate = new Date(schedulingDates[0]);
+
+        while (currentDate <= schedulingDates[1]) {
+          allDates.push(new Date(currentDate));
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        flatpickrInstance.setDate(allDates);
+
+        const availabilityArrayTemp = new Array(totalDaysInYear).fill(0);
+
+        allDates.forEach(date => {
+          const dayOfYear = getDayOfYear(date);
+          availabilityArrayTemp[dayOfYear] = 1; // Mark the day as available
+        });
+        updateSoldierAvailability(soldierId, availabilityArrayTemp);
+      }
+    };
   }
 
   function getDayOfYear(date) {

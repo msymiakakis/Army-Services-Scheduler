@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const soldierCalendarsContainer = document.getElementById("soldier-calendars");
   const services = JSON.parse(localStorage.getItem("services"));
 
-  if (!soldierCalendarsContainer || soldierCalendarsContainer.children.length === 0 || !services || services.length === 0) {
+  if (!soldierCalendarsContainer || !services || services.length === 0) {
     // If either soldier calendars container is not found or empty, or services are not found or empty, hide the history section container
     document.querySelector(".history-section-container").style.display = "none";
     const noSoldiersServicesMessage = document.getElementById("noSoldiersServicesMessage");
@@ -192,20 +192,22 @@ const currentYear = new Date().getFullYear();
 const startDate = new Date(currentYear, 0, 1); // January 1st of the current year
 const nextYearStartDate = new Date(currentYear + 1, 0, 1); // January 1st of the next year
 
-const historyPeriod = JSON.parse(localStorage.getItem("historyPeriod"));
-const historyStartDate = new Date(historyPeriod.startDate);
-const historyEndDate = new Date(historyPeriod.endDate);
 // Calculate the difference in milliseconds between the two dates and convert it to days
 const totalDaysInYear = Math.floor((nextYearStartDate - startDate) / (1000 * 60 * 60 * 24));
 
 // Add event listener to the button
 resetHistoryButton.addEventListener("click", function () {
+  const historyPeriod = JSON.parse(localStorage.getItem("historyPeriod"));
+  const historyStartDate = new Date(historyPeriod.startDate);
+  const historyEndDate = new Date(historyPeriod.endDate);
   // Show modal dialog for confirmation
-  const confirmation = confirm("Do you want to reset the service history of all soldiers or a specific soldier?");
+  // const confirmation = confirm("Do you want to reset the service history of all soldiers or a specific soldier?");
 
-  if (confirmation) {
+  if (1) {
     // Prompt the user to choose all or a specific soldier
-    const option = prompt("Enter 'all' to reset service history of all soldiers, or enter a soldier's ID to reset their service history:");
+    const option = prompt(
+      "Πληκτρολογήστε all για να διαγράψετε το ιστορικό υπηρεσιών όλων των οπλιτών ή πληκτρολογήστε το ΑΣΜ ενός οπλίτη για να διαγράψετε το ιστορικό υπηρεσιών μόνο εκείνου:"
+    );
 
     // Get soldiers data from local storage
     let soldiers = JSON.parse(localStorage.getItem("soldiers"));
@@ -217,10 +219,11 @@ resetHistoryButton.addEventListener("click", function () {
         soldiers.forEach(soldier => {
           resetServiceHistoryBetweenDates(soldier.serviceHistory, historyStartDate, historyEndDate);
         });
-        alert("Service history of all soldiers has been reset.");
+        alert("Τα ιστορικά υπηρεσιών όλων των οπλιτών διαγράφθηκαν επιτυχώς.");
       } else {
-        alert("There are no soldiers to reset.");
+        alert("Δεν υπάρχουν διαθέσιμοι οπλίτες");
       }
+    } else if (!option) {
     } else {
       // Reset service history of a specific soldier
       const soldierId = parseInt(option);
@@ -228,9 +231,9 @@ resetHistoryButton.addEventListener("click", function () {
 
       if (soldier) {
         resetServiceHistoryBetweenDates(soldier.serviceHistory, historyStartDate, historyEndDate);
-        alert(`Service history of soldier with ID ${soldierId} has been reset.`);
+        alert(`Το ιστορικό υπηρεσιών του οπλίτη με ΑΣΜ ${soldierId} διαγράφηκε επιτυχώς.`);
       } else {
-        alert("Soldier with the provided ID was not found.");
+        alert("Δεν βρέθηκε οπλίτης με το συγκεκριμένο ΑΣΜ.");
       }
     }
 

@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // Save the updated services array back to local storage
       localStorage.setItem("services", JSON.stringify(services));
 
-      console.log("Service availability updated:", service);
+      console.log("Η διαθεσιμότητα υπηρεσιών ενημερώθηκε:", service);
     } else {
-      console.error("Service not found with ID:", serviceId);
+      console.error("Δεν βρέθηκε υπηρεσία με αναγνωριστικό αριθμό (ID):", serviceId);
     }
   }
 
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Update the service's availability array
       availabilityArray = service.availability;
     } else {
-      console.error("Service not found with ID:", serviceId);
+      console.error("Δεν βρέθηκε υπηρεσία με αναγνωριστικό αριθμό (ID):", serviceId);
     }
     // Create a div to hold the service's name and calendar
     const serviceContainer = document.createElement("div");
@@ -63,9 +63,15 @@ document.addEventListener("DOMContentLoaded", function () {
     calendarContainer.id = `calendar-${serviceId}`;
     // calendarContainer.setAttribute('type', 'text'); // Set input type to text
 
+    // Append a button that selects all available dates.
+    const selectAllButton = document.createElement("button");
+    selectAllButton.className = "selectAllButton";
+    selectAllButton.textContent = "Επιλογή Όλων";
+
     // Append the service's name and calendar into the service container
     serviceContainer.appendChild(serviceNameElement);
     serviceContainer.appendChild(calendarContainer);
+    serviceContainer.appendChild(selectAllButton);
 
     // Append the service container to the serviceCalendarsContainer
     serviceCalendarsContainer.appendChild(serviceContainer);
@@ -109,6 +115,29 @@ document.addEventListener("DOMContentLoaded", function () {
         updateServiceAvailability(serviceId, availabilityArrayTemp);
       },
     });
+
+    // Handle the select all button click
+    selectAllButton.onclick = () => {
+      if (schedulingDates.length === 2) {
+        const allDates = [];
+        let currentDate = new Date(schedulingDates[0]);
+
+        while (currentDate <= schedulingDates[1]) {
+          allDates.push(new Date(currentDate));
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        flatpickrInstance.setDate(allDates);
+
+        const availabilityArrayTemp = new Array(totalDaysInYear).fill(0);
+
+        allDates.forEach(date => {
+          const dayOfYear = getDayOfYear(date);
+          availabilityArrayTemp[dayOfYear] = 1; // Mark the day as available
+        });
+        updateServiceAvailability(serviceId, availabilityArrayTemp);
+      }
+    };
   }
 
   function getDayOfYear(date) {
